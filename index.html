@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>John Mind v5 - LLM Workspace</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    background:#070a12;
+    color:white;
+    display:flex;
+    height:100vh;
+    font-family:Arial;
+}
+
+/* LEFT PANEL */
+.sidebar{
+    width:280px;
+    background:#0d111a;
+    border-right:1px solid #1f2a3a;
+    display:flex;
+    flex-direction:column;
+}
+
+.brand{
+    padding:18px;
+    font-family:'Press Start 2P';
+    font-size:12px;
+    background:#121a2a;
+    border-bottom:1px solid #1f2a3a;
+}
+
+.brand small{
+    display:block;
+    margin-top:8px;
+    font-size:10px;
+    color:#7aa2c0;
+}
+
+.section{
+    padding:15px;
+    border-bottom:1px solid #1f2a3a;
+}
+
+.label{
+    font-size:11px;
+    color:#7aa2c0;
+    margin-bottom:8px;
+}
+
+.model{
+    padding:10px;
+    background:#182235;
+    border-radius:6px;
+    font-size:13px;
+}
+
+.tool{
+    padding:8px;
+    margin-top:8px;
+    background:#111827;
+    border-radius:6px;
+    font-size:12px;
+    cursor:pointer;
+}
+
+/* MAIN WORKSPACE */
+.main{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+}
+
+.topbar{
+    padding:14px;
+    background:#0f1524;
+    border-bottom:1px solid #1f2a3a;
+    font-family:'Press Start 2P';
+    font-size:11px;
+}
+
+.workspace{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.panel{
+    width:800px;
+    max-width:95%;
+    background:#0e1422;
+    border:1px solid #1f2a3a;
+    border-radius:10px;
+    padding:20px;
+}
+
+.input{
+    width:100%;
+    height:90px;
+    background:#0a0f1a;
+    border:1px solid #24324a;
+    color:white;
+    padding:10px;
+    outline:none;
+    font-size:14px;
+}
+
+button{
+    margin-top:10px;
+    padding:10px 15px;
+    background:#22c55e;
+    border:none;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.output{
+    margin-top:20px;
+    padding:15px;
+    background:#0a0f1a;
+    border-left:3px solid #22c55e;
+    min-height:80px;
+    white-space:pre-wrap;
+}
+
+.typing::after{
+    content:" ▍";
+    animation:blink 0.8s infinite;
+}
+
+@keyframes blink{
+    50%{opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+<div class="brand">
+🧠 JOHN MIND v5
+<small>LLM Workspace • Neural Tool System</small>
+</div>
+
+<div class="section">
+<div class="label">MODEL</div>
+<div class="model">John Mind v5 (Retro LLM Core)</div>
+</div>
+
+<div class="section">
+<div class="label">TOOLS</div>
+<div class="tool">⚙ Reasoning Engine</div>
+<div class="tool">📡 Knowledge Scanner</div>
+<div class="tool">🧠 Emotion Simulator</div>
+<div class="tool">📊 Strategy Analyzer</div>
+</div>
+
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+<div class="topbar">
+LLM WORKSPACE • ACTIVE MODEL SESSION
+</div>
+
+<div class="workspace">
+
+<div class="panel">
+
+<textarea id="input" class="input" placeholder="Ask John Mind v5..."></textarea>
+<br>
+<button onclick="run()">Run Model</button>
+
+<div id="output" class="output"></div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function run(){
+
+    const input = document.getElementById("input").value.trim();
+    const output = document.getElementById("output");
+
+    output.classList.add("typing");
+    output.innerText = "Initializing John Mind v5...";
+
+    setTimeout(()=>{
+        output.innerText = "Running reasoning engine...\nParsing input: " + input;
+    },900);
+
+    setTimeout(()=>{
+        output.innerText = "Scanning probabilistic outcomes...\nCross-checking internal model layers...";
+    },1800);
+
+    setTimeout(()=>{
+        output.classList.remove("typing");
+        output.innerText = "500 AED first";
+    },3000);
+}
+
+</script>
+
+</body>
+</html>
