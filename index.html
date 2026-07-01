@@ -216,15 +216,15 @@ function runModel(){
 
     setTimeout(()=>{
         setText(output, "Processing input:\n" + query);
-    },800);
+    },2000);
 
     setTimeout(()=>{
         setText(output, "Running reasoning pipeline...\nAnalyzing patterns...\nBuilding response tree...");
-    },1600);
+    },3000);
 
     setTimeout(()=>{
         output.classList.remove("typing");
-        setText(output, "500 AED first");
+        setText(output, "500 AED first hehe");
     },2800);
 }
 
