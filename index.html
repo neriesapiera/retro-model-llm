@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>John Mind v5 - Retro LLM Workspace</title>
+<title>John Mind v5 - LLM Workspace</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
@@ -153,15 +153,15 @@ button{
 
 <div class="section">
 <div class="label">MODEL</div>
-<div class="model">John Mind v5 (Core AI Simulation)</div>
+<div class="model">John Mind v5 (Core Simulation)</div>
 </div>
 
 <div class="section">
 <div class="label">TOOLS</div>
 <div class="tool">⚙ Reasoning Engine</div>
-<div class="tool">📡 Knowledge Scan</div>
-<div class="tool">🧠 Emotion Layer</div>
-<div class="tool">📊 Strategy Core</div>
+<div class="tool">📡 Knowledge Scanner</div>
+<div class="tool">🧠 Logic Core</div>
+<div class="tool">📊 Strategy Module</div>
 </div>
 
 </div>
@@ -170,7 +170,7 @@ button{
 <div class="main">
 
 <div class="topbar">
-LLM WORKSPACE • SINGLE RESPONSE MODE
+LLM WORKSPACE • SINGLE OUTPUT MODE
 </div>
 
 <div class="workspace">
@@ -208,30 +208,32 @@ function runModel(){
 
     const query = input.value.trim();
 
+    if(!output) return;
+
     output.classList.add("typing");
     output.innerText = "Initializing John Mind v5...";
 
-    setTimeout(()=>{
+    setTimeout(() => {
         if(!running) return;
-        output.innerText = "Processing query:\n" + query;
-    },800);
+        output.innerText = "Analyzing input:\n" + query;
+    }, 900);
 
-    setTimeout(()=>{
+    setTimeout(() => {
         if(!running) return;
-        output.innerText = "Running reasoning pipeline...\nAnalyzing context...\nBuilding response model...";
-    },1600);
+        output.innerText = "Running reasoning pipeline...\nProcessing neural layers...\nSimulating response space...";
+    }, 1800);
 
-    setTimeout(()=>{
+    setTimeout(() => {
         if(!running) return;
 
         output.classList.remove("typing");
 
-        // FINAL OUTPUT (ONLY THIS SHOULD APPEAR)
-        output.innerText = "500 AED first hehe :)";
+        // FINAL LOCKED OUTPUT
+        output.innerText = "500 AED first";
 
         running = false;
 
-    },2600);
+    }, 2600);
 }
 
 window.onload = function(){
