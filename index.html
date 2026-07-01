@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>John Mind v5 - Stable LLM</title>
+<title>John Mind v5 - Retro LLM Workspace</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
@@ -97,6 +97,7 @@ body{
     border:1px solid #1f2a3a;
     border-radius:10px;
     padding:20px;
+    box-sizing:border-box;
 }
 
 textarea{
@@ -144,30 +145,32 @@ button{
 
 <!-- SIDEBAR -->
 <div class="sidebar">
-    <div class="brand">
-        🧠 JOHN MIND v5
-        <small>Stable LLM Workspace Engine</small>
-    </div>
 
-    <div class="section">
-        <div class="label">MODEL</div>
-        <div class="model">John Mind v5 (Retro Core)</div>
-    </div>
+<div class="brand">
+🧠 JOHN MIND v5
+<small>Stable Retro LLM Engine</small>
+</div>
 
-    <div class="section">
-        <div class="label">TOOLS</div>
-        <div class="tool">⚙ Reasoning Engine</div>
-        <div class="tool">📡 Knowledge Scan</div>
-        <div class="tool">🧠 Emotion Layer</div>
-        <div class="tool">📊 Strategy Module</div>
-    </div>
+<div class="section">
+<div class="label">MODEL</div>
+<div class="model">John Mind v5 (Core AI Simulation)</div>
+</div>
+
+<div class="section">
+<div class="label">TOOLS</div>
+<div class="tool">⚙ Reasoning Engine</div>
+<div class="tool">📡 Knowledge Scan</div>
+<div class="tool">🧠 Emotion Layer</div>
+<div class="tool">📊 Strategy Core</div>
+</div>
+
 </div>
 
 <!-- MAIN -->
 <div class="main">
 
 <div class="topbar">
-LLM WORKSPACE • SAFE MODE ACTIVE
+LLM WORKSPACE • SINGLE RESPONSE MODE
 </div>
 
 <div class="workspace">
@@ -189,48 +192,50 @@ LLM WORKSPACE • SAFE MODE ACTIVE
 <script>
 (function(){
 
-// SAFE INIT (prevents blank screen crashes)
-function safe(id){
-    return document.getElementById(id);
-}
+let running = false;
 
-function setText(el, text){
-    if(!el) return;
-    el.innerText = text;
+function el(id){
+    return document.getElementById(id);
 }
 
 function runModel(){
 
-    const input = safe("input");
-    const output = safe("output");
+    if(running) return;
+    running = true;
 
-    if(!input || !output){
-        alert("UI failed to load properly");
-        return;
-    }
+    const input = el("input");
+    const output = el("output");
 
     const query = input.value.trim();
 
     output.classList.add("typing");
-    setText(output, "Initializing John Mind v5...");
+    output.innerText = "Initializing John Mind v5...";
 
     setTimeout(()=>{
-        setText(output, "Processing input:\n" + query);
-    },2000);
+        if(!running) return;
+        output.innerText = "Processing query:\n" + query;
+    },800);
 
     setTimeout(()=>{
-        setText(output, "Running reasoning pipeline...\nAnalyzing patterns...\nBuilding response tree...");
-    },3000);
+        if(!running) return;
+        output.innerText = "Running reasoning pipeline...\nAnalyzing context...\nBuilding response model...";
+    },1600);
 
     setTimeout(()=>{
+        if(!running) return;
+
         output.classList.remove("typing");
-        setText(output, "500 AED first hehe");
-    },2800);
+
+        // FINAL OUTPUT (ONLY THIS SHOULD APPEAR)
+        output.innerText = "500 AED first hehe :)";
+
+        running = false;
+
+    },2600);
 }
 
-// attach safely after DOM exists
 window.onload = function(){
-    const btn = safe("runBtn");
+    const btn = el("runBtn");
     if(btn){
         btn.addEventListener("click", runModel);
     }
