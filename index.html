@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>John Mind v5 - LLM Workspace</title>
+<title>John Mind v5 - Stable LLM</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
@@ -17,7 +17,7 @@ body{
     font-family:Arial;
 }
 
-/* LEFT PANEL */
+/* SIDEBAR */
 .sidebar{
     width:280px;
     background:#0d111a;
@@ -27,9 +27,9 @@ body{
 }
 
 .brand{
-    padding:18px;
+    padding:16px;
     font-family:'Press Start 2P';
-    font-size:12px;
+    font-size:11px;
     background:#121a2a;
     border-bottom:1px solid #1f2a3a;
 }
@@ -42,7 +42,7 @@ body{
 }
 
 .section{
-    padding:15px;
+    padding:14px;
     border-bottom:1px solid #1f2a3a;
 }
 
@@ -65,10 +65,9 @@ body{
     background:#111827;
     border-radius:6px;
     font-size:12px;
-    cursor:pointer;
 }
 
-/* MAIN WORKSPACE */
+/* MAIN */
 .main{
     flex:1;
     display:flex;
@@ -92,7 +91,7 @@ body{
 }
 
 .panel{
-    width:800px;
+    width:820px;
     max-width:95%;
     background:#0e1422;
     border:1px solid #1f2a3a;
@@ -100,15 +99,16 @@ body{
     padding:20px;
 }
 
-.input{
+textarea{
     width:100%;
-    height:90px;
+    height:100px;
     background:#0a0f1a;
     border:1px solid #24324a;
     color:white;
     padding:10px;
     outline:none;
     font-size:14px;
+    box-sizing:border-box;
 }
 
 button{
@@ -121,7 +121,7 @@ button{
 }
 
 .output{
-    margin-top:20px;
+    margin-top:18px;
     padding:15px;
     background:#0a0f1a;
     border-left:3px solid #22c55e;
@@ -144,41 +144,39 @@ button{
 
 <!-- SIDEBAR -->
 <div class="sidebar">
+    <div class="brand">
+        🧠 JOHN MIND v5
+        <small>Stable LLM Workspace Engine</small>
+    </div>
 
-<div class="brand">
-🧠 JOHN MIND v5
-<small>LLM Workspace • Neural Tool System</small>
-</div>
+    <div class="section">
+        <div class="label">MODEL</div>
+        <div class="model">John Mind v5 (Retro Core)</div>
+    </div>
 
-<div class="section">
-<div class="label">MODEL</div>
-<div class="model">John Mind v5 (Retro LLM Core)</div>
-</div>
-
-<div class="section">
-<div class="label">TOOLS</div>
-<div class="tool">⚙ Reasoning Engine</div>
-<div class="tool">📡 Knowledge Scanner</div>
-<div class="tool">🧠 Emotion Simulator</div>
-<div class="tool">📊 Strategy Analyzer</div>
-</div>
-
+    <div class="section">
+        <div class="label">TOOLS</div>
+        <div class="tool">⚙ Reasoning Engine</div>
+        <div class="tool">📡 Knowledge Scan</div>
+        <div class="tool">🧠 Emotion Layer</div>
+        <div class="tool">📊 Strategy Module</div>
+    </div>
 </div>
 
 <!-- MAIN -->
 <div class="main">
 
 <div class="topbar">
-LLM WORKSPACE • ACTIVE MODEL SESSION
+LLM WORKSPACE • SAFE MODE ACTIVE
 </div>
 
 <div class="workspace">
 
 <div class="panel">
 
-<textarea id="input" class="input" placeholder="Ask John Mind v5..."></textarea>
+<textarea id="input" placeholder="Ask John Mind v5..."></textarea>
 <br>
-<button onclick="run()">Run Model</button>
+<button id="runBtn">Run Model</button>
 
 <div id="output" class="output"></div>
 
@@ -189,29 +187,56 @@ LLM WORKSPACE • ACTIVE MODEL SESSION
 </div>
 
 <script>
+(function(){
 
-function run(){
+// SAFE INIT (prevents blank screen crashes)
+function safe(id){
+    return document.getElementById(id);
+}
 
-    const input = document.getElementById("input").value.trim();
-    const output = document.getElementById("output");
+function setText(el, text){
+    if(!el) return;
+    el.innerText = text;
+}
+
+function runModel(){
+
+    const input = safe("input");
+    const output = safe("output");
+
+    if(!input || !output){
+        alert("UI failed to load properly");
+        return;
+    }
+
+    const query = input.value.trim();
 
     output.classList.add("typing");
-    output.innerText = "Initializing John Mind v5...";
+    setText(output, "Initializing John Mind v5...");
 
     setTimeout(()=>{
-        output.innerText = "Running reasoning engine...\nParsing input: " + input;
-    },900);
+        setText(output, "Processing input:\n" + query);
+    },800);
 
     setTimeout(()=>{
-        output.innerText = "Scanning probabilistic outcomes...\nCross-checking internal model layers...";
-    },1800);
+        setText(output, "Running reasoning pipeline...\nAnalyzing patterns...\nBuilding response tree...");
+    },1600);
 
     setTimeout(()=>{
         output.classList.remove("typing");
-        output.innerText = "500 AED first";
-    },3000);
+        setText(output, "500 AED first");
+    },2800);
 }
 
+// attach safely after DOM exists
+window.onload = function(){
+    const btn = safe("runBtn");
+    if(btn){
+        btn.addEventListener("click", runModel);
+    }
+};
+
+})();
 </script>
 
 </body>
